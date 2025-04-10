@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Carlo | Psicólogo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --main-color: #5B87AA;
+            --accent-color: #E2A76F;
+            --dark-color: #2D3E50;
+            --light-color: #F5F5F5;
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--main-color);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--main-color);
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: var(--dark-color);
+            margin: 5px;
+            transition: var(--transition);
+        }
+        
+        .hero {
+            padding: 80px 0;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .hero-img {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .hero-img img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hero-text {
+            flex: 1;
+        }
+        
+        .hero-text h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+        
+        .hero-text p {
+            margin-bottom: 25px;
+            color: #555;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--main-color);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--dark-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        section:nth-child(even) {
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--dark-color);
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: #666;
+        }
+        
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .card:hover .card-img img {
+            transform: scale(1.1);
+        }
+        
+        .card-content {
+            padding: 25px;
+        }
+        
+        .card-content h3 {
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+        
+        .card-content p {
+            margin-bottom: 20px;
+            color: #666;
+        }
+        
+        .about-container {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .about-img {
+            flex: 1;
+        }
+        
+        .about-img img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--main-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+        
+        .contact-details h3 {
+            margin-bottom: 5px;
+            color: var(--dark-color);
+        }
+        
+        .contact-form form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .form-group label {
+            font-weight: 500;
+            color: var(--dark-color);
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--main-color);
+            box-shadow: 0 0 0 2px rgba(91, 135, 170, 0.2);
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background-color: var(--main-color);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        @media (max-width: 900px) {
+            .hero,
+            .about-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .about-container {
+                flex-direction: column-reverse;
+            }
+            
+            .hero-img,
+            .about-img {
+                margin-bottom: 40px;
+            }
+            
+            .nav-links {
+                position: absolute;
+                right: 0;
+                top: 70px;
+                background-color: white;
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+                transform: translateY(-150%);
+                transition: transform 0.5s ease;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+            }
+            
+            .nav-links li {
+                margin: 0;
+                padding: 15px;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hamburger.active .line1 {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+            
+            .hamburger.active .line2 {
+                opacity: 0;
+            }
+            
+            .hamburger.active .line3 {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .about-text h2 {
+                font-size: 1.8rem;
+            }
+        }
+        
+        .section-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            color: var(--main-color);
+            margin-bottom: 20px;
+        }
+        
+        .service {
+            text-align: center;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+        
+        .service:hover {
+            transform: translateY(-10px);
+        }
+        
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">Dr. Carlo</a>
+                <ul class="nav-links">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#lopivi">LOPIVI</a></li>
+                    <li><a href="#escuela">Escuela de Familias</a></li>
+                    <li><a href="#prevencion">Prevención de Suicidios</a></li>
+                    <li><a href="#sobre-mi">Sobre Mí</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+                <div class="hamburger">
+                    <div class="line1"></div>
+                    <div class="line2"></div>
+                    <div class="line3"></div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section id="inicio" class="hero">
+        <div class="container">
+            <div class="hero">
+                <div class="hero-img">
+                    <img src="Fotos/Carlo.jpg" alt="Dr. Martín Psicólogo">
+                </div>
+                <div class="hero-text">
+                    <h1>Dr. Carlo Dolader</h1>
+                    <h2>Psicólogo</h2>
+                    <p>Trabajo en el Ayuntamiento de Aranjuez desde el año 2008, durante todos estos años he formado siempre parte del Equipo de Familia, y también trabajando como psicólogo durante varios años en el Centro de Atención Integral a Drogodependientes del municipio.</p>
+                    <a href="#contacto" class="btn">Pedir cita</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="lopivi">
+        <div class="container">
+            <div class="section-title">
+                <h2>LOPIVI</h2>
+                <p>Ley Orgánica de Protección Integral a la Infancia y la Adolescencia frente a la Violencia</p>
+            </div>
+            <div class="section-content">
+                <p>La LOPIVI (Ley Orgánica 8/2021) establece un marco integral de protección para niños, niñas y adolescentes frente a cualquier forma de violencia. Como profesional comprometido con el bienestar infantil, ofrezco servicios especializados en:</p>
+                <div class="services">
+                    <div class="service">
+                        <div class="service-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Evaluación de situaciones de riesgo</h3>
+                        <p>Identificación temprana de factores de vulnerabilidad y situaciones potencialmente perjudiciales.</p>
+                    </div>
+                    <div class="service">
+                        <div class="service-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3>Intervención terapéutica</h3>
+                        <p>Tratamiento especializado para menores que han sufrido situaciones de violencia o maltrato.</p>
+                    </div>
+                    <div class="service">
+                        <div class="service-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Asesoramiento familiar y escolar</h3>
+                        <p>Orientación a familias y centros educativos para crear entornos seguros y protectores.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="escuela">
+        <div class="container">
+            <div class="section-title">
+                <h2>Escuela de Familias</h2>
+                <p>Apoyo y orientación para padres y cuidadores</p>
+            </div>
+            <div class="section-content">
+                <p>La Escuela de Familias es un espacio de aprendizaje, reflexión e intercambio donde las familias pueden adquirir herramientas para afrontar los retos de la crianza y mejorar la comunicación familiar. Ofrezco:</p>
+                <div class="cards">
+                    <div class="card">
+                        <div class="card-img">
+                            <img src="Fotos/taller_grupal.jpg" alt="Talleres para padres">
+                        </div>
+                        <div class="card-content">
+                            <h3>Talleres grupales</h3>
+                            <p>Sesiones temáticas sobre comunicación, límites, gestión emocional y etapas evolutivas.</p>
+                            <a href="#contacto" class="btn">Más información</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-img">
+                            <img src="Fotos/Asesoramiento_personalizado.jpg" alt="Asesoramiento personalizado">
+                        </div>
+                        <div class="card-content">
+                            <h3>Asesoramiento personalizado</h3>
+                            <p>Orientación adaptada a las necesidades específicas de cada familia y situación particular.</p>
+                            <a href="#contacto" class="btn">Más información</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-img">
+                            <img src="Fotos/Diseño sin título (74).png" alt="Recursos educativos">
+                        </div>
+                        <div class="card-content">
+                            <h3>Recursos educativos</h3>
+                            <p>Materiales prácticos y recomendaciones para implementar en el día a día familiar.</p>
+                            <a href="#contacto" class="btn">Más información</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="prevencion">
+        <div class="container">
+            <div class="section-title">
+                <h2>Prevención de Suicidios</h2>
+                <p>Programa de detección e intervención temprana</p>
+            </div>
+            <div class="section-content">
+                <p>El suicidio es un problema de salud pública que requiere una atención especializada y sensible. Mi programa de prevención está diseñado para identificar factores de riesgo, proporcionar apoyo inmediato y desarrollar estrategias de afrontamiento efectivas.</p>
+                <div class="services">
+                    <div class="service">
+                        <div class="service-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h3>Evaluación de riesgo</h3>
+                        <p>Valoración profesional del nivel de riesgo suicida y factores asociados.</p>
+                    </div>
+                    <div class="service">
+                        <div class="service-icon">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <h3>Intervención en crisis</h3>
+                        <p>Atención inmediata y plan de seguridad para situaciones de alto riesgo.</p>
+                    </div>
+                    <div class="service">
+                        <div class="service-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3>Terapia especializada</h3>
+                        <p>Tratamiento psicológico centrado en la ideación suicida y problemas asociados.</p>
+                    </div>
+                    <div class="service">
+                        <div class="service-icon">
+                            <i class="fas fa-book-reader"></i>
+                        </div>
+                        <h3>Formación para profesionales</h3>
+                        <p>Capacitación para educadores, sanitarios y otros profesionales en contacto con población vulnerable.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="sobre-mi">
+        <div class="container">
+            <div class="about-container">
+                <div class="about-img">
+                    <img src="Fotos/Carlo.jpg" alt="Dr. Carlo en consulta">
+                </div>
+                <div class="about-text">
+                    <h2>Sobre Mí</h2>
+                    <p>Hola, soy Carlo. Trabajo en el Ayuntamiento de Aranjuez desde el año 2008, durante todos estos años he formado siempre parte del Equipo de Familia, y también trabajando como psicólogo durante varios años en el Centro de Atención Integral a Drogodependientes del municipio.</p>
+                    <p>Terminé la carrera en 2003/2004, primer año trabajé de carretillero en una fábrica local, pensando que sería imposible desde ese punto de partida conseguir empezar a desarrollar mi profesión elegida. Hice entonces un curso de Monitor Sociocultural que parece que me abrió más puertas que la carrera en si. A raíz de este curso, echando CV por todas las asociaciones y fundaciones implicadas en lo social me llamaron de varias empresas para trabajar en Centros de Reeducación y Resinserción de Menores (reforma), trabajé 4 años en este sector. Fue mi primer contacto con la problemática de menores y la intervención directa. Como educador. En estos centros tuve la suerte de poder trabajar con el ámbito más duro en cuanto a población adolescente, delitos violentos, bandas, terrorismo.</p>
+                    <p>En 2008 surgió una plaza de nueva creación en el Ayuntamiento de Aranjuez, tuve la gran suerte de quedármela y hasta ahora.</p>
+                    <p>Mi formación real empieza después de la universidad, tras un curso que me pagó el ayuntamiento de “Psicología de Emergencias y Urgencias” me dí cuenta de lo importantísimo que es la formación continuada, y lo apasionante. Después de eso la formación ha sido un continuo del cual no puedo desligarme. Experto en Psicoterapia Infantil, Experto en Psicoterapia Breve con Niños y Adolescentes, y Formación Avanzada en EMDR, son los pilares en los que apoyo mi trabajo cotidiano. También cada año cursos de actualización sobre Intervención Psicosocial con familias en riesgo o dificultad social, y sobre temas concretos para el trabajo terapéutico: Autolesiones, TCA, Abuso Sexual, etc.</p>
+                </div>
+            </div>
+        </div>
+    </section>   
+
+    <section id="contacto">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contacto</h2>
+                <p>Estoy aquí para ayudarte. No dudes en ponerte en contacto conmigo para cualquier consulta o para solicitar una cita.</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Dirección</h3>
+                            <p>C/ Pedro García Mochales 78. 28300 Aranjuez</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Teléfono</h3>
+                            <p>+34 649 03 16 00</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Email</h3>
+                            <p>c.dolader.psicologia@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form action="https://api.web3forms.com/submit" method="POST">
+                        <input type="hidden" name="access_key" value="0f83b3d6-cb64-4417-ab40-359d971d6d0a">
+                        <div class="form-group">
+                            <label for="name">Nombre</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Apellidos</label>
+                            <input type="text" id="surname" name="apellidos" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Teléfono</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Asunto</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mensaje</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <a href="#" class="logo" style="color: white; font-size: 1.5rem;">Dr. Carlo</a>
+                <div class="social-links">
+                    <a href="https://wa.me/34649031600"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.instagram.com/carlo_d.psico/"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/p/Carlo-Dolader-Agudo-100010196952143/?locale=es_ES"><i class="fab fa-facebook-f"></i></a>
+                </div>
+                <p class="copyright">© 2025 Dr. Carlo Dolader - Psicólogo. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        const links = document.querySelectorAll('.nav-links li');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.classList.remove('active');
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            header.classList.toggle('scrolled', window.scrollY > 0);
+        });
+    </script>
